@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Profissional</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <meta charset="utf-8" />
+</head>
+
+<body>
+  <h1>Cadastro</h1>
+  <p>Profissionais cadastrados.</p>
+  <table style="width:50%">
+    <thead>
+      <tr style="background-color: #CCC">
+        <td style="width:50%">Nome</td>
+        <td style="width:15%">Especialidade</td>
+        <td style="width:15%">Ações</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% if(!results || results.length == 0) { %>
+      <tr>
+        <td colspan="4">Nenhum Profissional cadastrado.</td>
+      </tr>
+      <% } else { results.forEach(function(prof) { %>
+      <!-- results foi iterado no arq routes/index.js Pág 202-->
+      <tr>
+        <td style="width:50%"><%=prof.nome  %></td>
+        <td style="width:15%"><%=prof.especialidade %></td>
+        
+        <td style="width:15%">
+          <a href="/prof/edit/<%= prof.id%>">Editar</a>
+          <a href="/prof/delete/<%= prof.id %>" onclick="return confirm('Tem certeza?');">Excluir</a>
+        </td> <!-- pág 207 e 215 -->
+      </tr>
+      <% })
+        } %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="4">
+          <a href="/prof/new">Cadastrar Novo</a>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+  <script>
+    if(location.href.indexOf('delete=true') != -1){
+        alert('Cliente excluído com sucesso!');
+    }
+    else if(location.href.indexOf('edit=true') != -1){
+        alert('Cliente editado com sucesso!');
+    }
+    else if(location.href.indexOf('new=true') != -1){
+        alert('Cliente cadastrado com sucesso!');
+    }
+    else if(location.href.indexOf('erro') != -1){
+        alert('Ocorreu um erro!');
+    }
+</script>
+</body>
+
+</html>

@@ -49,34 +49,26 @@
               </div>
             </div>
             <div class="form-group row">
-              <label for="fk_profissional" class="col-sm-2 col-form-label">Profissional - campo teste</label>
+              <label for="fk_profissional" class="col-sm-2 col-form-label">Código do Profissional Atual</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" id="fk_profissional" name="fk_profissional"  value="<%= result.fk_profissional %>" placeholder="digite o CÓDIGO do profissional responsavel pela pergunta">
               </div>
             </div>
-
+            
             <div class="form-group row">
-              <label for="prof" class="col-sm-2 col-form-label">Profissional - como deve ficar</label>
+              <label for="prof" class="col-sm-2 col-form-label">Código do novo Profissional</label>
               <div class="col-sm-10">
-                <select  class="form-control" id="especialidade" name="especialidade2">
-                  <option value="">Selecione a Especialidade</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+              
+              <select  class="form-control" id="especialidade2" name="especialidade2">
+                  <option value="">Selecione o Profissional</option>
+                                 
+                  <% for(var count = 0; count < valores.length; count++) { %>
+                    <option value=""><%= valores[count]['id'] %> <%= valores[count]['nome'] %></option>
+                  <% } %>
+                  
               </select>
             </div>
-
-<!--             <div class="form-group row">
-              <label for="especialidade2" class="col-sm-2 col-form-label">Especialidade2</label>
-              <div class="col-sm-10">
-                <select  class="form-control" id="especialidade" name="especialidade2">
-                  <option value="">Selecione a Especialidade</option>
-                  <% for(var count = 0; count < result.length; count++) { %>
-                  <option value="<%= result[count].especialidade %>"><%= result[count].id %></option>
-                  <% } %>
-              </select>
-              </div>
-            </div> -->
+            
 
             <p>
               <input type="submit" value="Salvar" />

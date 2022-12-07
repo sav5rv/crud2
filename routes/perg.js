@@ -48,8 +48,16 @@ router.get('/edit/:id', async function (req, res) {
 
   try {
     const result = await global.db.selectPerg(id);
-    res.render('perg-new', { title: 'Editar Pergunta', result, action: '/perg/edit/' + id });
-    console.log('linha 51');
+    const profs = await global.db.selectProfs();
+    let valores = Object.values(profs);
+    res.render('perg-new', { title: 'Editar Perguntas', result, profs, valores, action: '/perg/edit/' + id });
+    
+    console.log('linha 51 do perg');
+    console.log('linha 52 do perg');
+    console.log(valores);
+    valores.forEach((nome, id) => {
+    console.log('Nome: ' + nome + ' Id: ' + id);
+  });
   }
   catch (error) {
     res.redirect('/?erro=' + error);

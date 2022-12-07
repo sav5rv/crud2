@@ -48,7 +48,7 @@ router.get('/edit/:id', async function (req, res) {
   try {
     const result = await global.db.selectProf(id);
     res.render('prof-new', { title: 'Edição de Profissional', result, action: '/prof/edit/' + id });
-    console.log('linha 51');
+    console.log('linha 51 do prof');
   }
   catch (error) {
     res.redirect('/?erro=' + error);

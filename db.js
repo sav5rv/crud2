@@ -11,7 +11,7 @@ async function connect(){
         host     : 'localhost',
         port     : 3306,
         user     : 'root',
-        password : 'mysql',
+        password : '123',
         database : 'banco1'
     });
 
@@ -119,9 +119,40 @@ async function deletePerg(id){
     return await conn.query('DELETE FROM tb_pergunta WHERE id=?;', [id]);
 }
 
+// TB RESPOSTA ----------------------- ************* -------------------------------------
+async function selectResps(){
+    const conn = await connect();
+    const [rows] = await conn.query('SELECT * FROM tb_resposta;');
+    return rows;
+}
+
+async function insertResp(resp){
+    const conn = await connect();
+    const sql = "INSERT INTO tb_resposta(resposta, idx_pergunta, fk_profissional, nome_questionario, id_aluno) VALUES (?,?,?,?,?);";
+    return await conn.query(sql, [resp.resposta, resp.idx_pergunta , resp.fk_profissional, resp.nome_questionario, resp.id_aluno]);
+}
+
+async function selectResp(id){  
+    const conn = await connect();
+    const sql = "SELECT * FROM tb_resposta WHERE id=?";
+    const [rows] = await conn.query(sql, [id]);
+    return rows && rows.length > 0 ? rows[0] : {};
+}
+
+async function updateResp(id, perg){
+    const conn = await connect();
+    const sql = "UPDATE tb_pergunta SET grupo=?, pergunta=?, fk_profissional=? WHERE id=?";
+    return await conn.query(sql, [perg.grupo, perg.pergunta, perg.fk_profissional, id]);
+}
+
+async function deleteResp(id){
+    const conn = await connect();
+    return await conn.query('DELETE FROM tb_resposta WHERE id=?;', [id]);
+}
 
 
 module.exports = { selectAlunos, selectAluno, insertAluno, updateAluno, deleteAluno,
                    selectProfs,  selectProf,  insertProf,  updateProf,  deleteProf,
-                   selectPergs,  selectPerg,  insertPerg,  updatePerg,  deletePerg
+                   selectPergs,  selectPerg,  insertPerg,  updatePerg,  deletePerg,
+                   selectResps,  selectResp,  insertResp,  updateResp,  deleteResp
                  }

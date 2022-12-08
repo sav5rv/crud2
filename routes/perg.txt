@@ -7,12 +7,9 @@ var router  = express.Router();
 /* GET home page. */
 router.get('/', async function (req, res) {
   try {
-    const results = await global.db.selectPergs();
-    console.log(results);
-    const profs = await global.db.selectProfs();
-  let valores = Object.values(profs);
-  
-    res.render('perg', { results, valores });
+    const carregarSelectProf = await global.db.selectProfs();
+    const results            = await global.db.selectPergs();
+    res.render('perg', { results, carregarSelectProf });
   }
   catch (error) {
     res.redirect('/?erro = ' + error);
@@ -21,16 +18,14 @@ router.get('/', async function (req, res) {
 
 
 /* GET new page. pág 210 */
-router.get('/new', function (req, res, next) {
-  console.log('linha 25')
-  const result = global.db.selectPerg();
-  const profs = global.db.selectProfs();
-  let valores = Object.values(profs);
-  res.render('perg-new', { title: 'Pergunta', valores, result, action: '/perg/new' });
-
-
-  
-
+router.get('/new', async function (req, res, next) {
+  try {
+    const carregarSelectProf = await global.db.selectProfs(); //resp por pegar os dados da tb_Prof e passar para a pág onde será carregado o select
+    res.render('perg-new', { title: 'Pergunta', result: {}, carregarSelectProf, action: '/perg/new' });
+  }
+  catch (error) {
+    res.redirect('/erro = ' + error);
+  }
 })
 
 
@@ -44,12 +39,7 @@ router.post('/new', async function (req, res) {
 
   try {
     await global.db.insertPerg({ grupo, pergunta, fk_profissional });
-    const profs = await global.db.selectProfs();
-    let valores = Object.values(profs);
-    console.log(valores);
-    console.log(profs)
-    console.log('linha 40')
-    res.redirect('/perg/?new=true', {valores, profs} );
+    res.redirect('/perg/?new=true');
   }
   catch (error) {
     res.redirect('/?erro=' + error);
@@ -63,18 +53,10 @@ router.get('/edit/:id', async function (req, res) {
   const id = parseInt(req.params.id);
 
   try {
-    const result = await global.db.selectPerg(id);
-    
-    const profs = await global.db.selectProfs();
-    let valores = Object.values(profs);
-    res.render('perg-new', { title: 'Editar Perguntas', result, profs, valores, action: '/perg/edit/' + id });
-    
-    console.log('linha 51 do perg');
-    console.log('linha 52 do perg');
-    console.log(valores);
-    valores.forEach((nome, id) => {
-    console.log('Nome: ' + nome + ' Id: ' + id);
-  });
+    const carregarSelectProf = await global.db.selectProfs();
+    const result             = await global.db.selectPerg(id);
+    res.render('perg-new', { title: 'Editar Pergunta', result, carregarSelectProf, action: '/perg/edit/' + id });
+    console.log('linha 51');
   }
   catch (error) {
     res.redirect('/?erro=' + error);

@@ -7,19 +7,25 @@ var router  = express.Router();
 /* GET home page. */
 router.get('/', async function (req, res) {
   try {
-    const results = await global.db.selectPergs();
-    console.log(results);
-    res.render('perg', { results });
+    const carregarSelectProf = await global.db.selectProfs();
+    const results            = await global.db.selectPergs();
+    res.render('perg', { results, carregarSelectProf });
   }
   catch (error) {
-    res.redirect('/?erro=' + error);
+    res.redirect('/?erro = ' + error);
   }
 })
 
 
 /* GET new page. pág 210 */
-router.get('/new', function (req, res, next) {
-  res.render('perg-new', { title: 'Pergunta', result: {}, action: '/perg/new' });
+router.get('/new', async function (req, res, next) {
+  try {
+    const carregarSelectProf = await global.db.selectProfs(); //resp por pegar os dados da tb_Prof e passar para a pág onde será carregado o select
+    res.render('perg-new', { title: 'Pergunta', result: {}, carregarSelectProf, action: '/perg/new' });
+  }
+  catch (error) {
+    res.redirect('/erro = ' + error);
+  }
 })
 
 
@@ -47,8 +53,9 @@ router.get('/edit/:id', async function (req, res) {
   const id = parseInt(req.params.id);
 
   try {
-    const result = await global.db.selectPerg(id);
-    res.render('perg-new', { title: 'Editar Pergunta', result, action: '/perg/edit/' + id });
+    const carregarSelectProf = await global.db.selectProfs();
+    const result             = await global.db.selectPerg(id);
+    res.render('perg-new', { title: 'Editar Pergunta', result, carregarSelectProf, action: '/perg/edit/' + id });
     console.log('linha 51');
   }
   catch (error) {

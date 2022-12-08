@@ -22,7 +22,7 @@
           <li class="nav-item"> <a class="nav-link" href="/aluno">Aluno</a> </li>
           <li class="nav-item"> <a class="nav-link" href="/prof"> Profissional</a> </li>
           <li class="nav-item"> <a class="nav-link" href="/perg"> Pergunta</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="/aluno/new">Questionário</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="/quest">Questionário</a> </li>
         </ul>
       </div>
     </div>
@@ -55,8 +55,8 @@
                   <th><%=perg.pergunta %></th>
                   <th><%=perg.fk_profissional %></th>
                   <th>
-                  <a href="/perg/edit/<%= perg.id%>">Editar</a>
-                  <a href="/perg/delete/<%= perg.id %>" onclick="return confirm('Tem certeza?');">Excluir</a>
+                    <a href="/perg/edit/<%= perg.id%>">Editar</a>
+                    <a href="/perg/delete/<%= perg.id %>" onclick="return confirm('Tem certeza?');">Excluir</a>
                   </th><!-- pág 207 e 215 -->
                 </tr>
                 <% })
@@ -84,6 +84,7 @@
       </div>
     </div>
   </div>
+
   <script>
     if (location.href.indexOf('delete=true') != -1) {
       alert('Pergunta excluída com sucesso!');

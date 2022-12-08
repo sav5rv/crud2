@@ -37,47 +37,28 @@
           <p>Preencha corretamente todos os campos&nbsp;</p>
           <form action="<%= action %>" method="POST">
             <div class="form-group row">
-              <label for="grupo" class="col-sm-2 col-form-label">grupo</label>
+              <label for="grupo" class="col-sm-2 col-form-label">Grupo</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" name="grupo" id="grupo" value="<%= result.grupo %>" placeholder="digite um grupo">
               </div>
             </div>
             <div class="form-group row">
-              <label for="pergunta" class="col-sm-2 col-form-label">pergunta</label>
+              <label for="pergunta" class="col-sm-2 col-form-label">Pergunta</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" id="pergunta" name="pergunta"  value="<%= result.pergunta %>" placeholder="digite sua pergunta">
               </div>
             </div>
             <div class="form-group row">
-              <label for="fk_profissional" class="col-sm-2 col-form-label">Profissional - campo teste</label>
+              <label for="fk_profissional" class="col-sm-2 col-form-label">Profissional</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="fk_profissional" name="fk_profissional"  value="<%= result.fk_profissional %>" placeholder="digite o nome do profissional responsavel pela pergunta">
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="prof" class="col-sm-2 col-form-label">Profissional - como deve ficar</label>
-              <div class="col-sm-10">
-                <select  class="form-control" id="especialidade" name="especialidade2">
-                  <option value="">Selecione a Especialidade</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-              </select>
-            </div>
-
-<!--             <div class="form-group row">
-              <label for="especialidade2" class="col-sm-2 col-form-label">Especialidade2</label>
-              <div class="col-sm-10">
-                <select  class="form-control" id="especialidade" name="especialidade2">
-                  <option value="">Selecione a Especialidade</option>
-                  <% for(var count = 0; count < result.length; count++) { %>
-                  <option value="<%= result[count].especialidade %>"><%= result[count].id %></option>
+                <select  class="form-control" id="fk_profissional" name="fk_profissional">
+                  <option value="">Escolha o nome</option>
+                  <% for(var count = 0; count < carregarSelectProf.length; count++) { %>
+                    <option value="<%= carregarSelectProf[count].id %>"><%= carregarSelectProf[count].nome %></option>
                   <% } %>
-              </select>
+                </select>
               </div>
-            </div> -->
-
+            </div>
             <p>
               <input type="submit" value="Salvar" />
             </p>
@@ -95,6 +76,19 @@
       </div>
     </div>
   </div>
+  <!-- <script src="./carregarSelect.js"></script> -->
+<!-- <script >
+  console.log(carregarSelectProf);
+  const languagesSelect = document.getElementById("select-especialidade");
+
+//vamos considerar que temos nossos dados em um array:
+const languagesList = carregarSelectProf;
+
+languagesList.forEach((language) => {
+    option = new Option(language, language.toLowerCase());
+    languagesSelect.options[languagesSelect.options.length] = option;
+  });
+  </script> -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

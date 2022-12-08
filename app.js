@@ -10,6 +10,7 @@ var alunoRouter = require('./routes/aluno');
 var profRouter  = require('./routes/prof');
 var pergRouter  = require('./routes/perg');
 var questRouter = require('./routes/quest');
+var respRouter = require('./routes/resp');
 var usersRouter = require('./routes/users');
 var testeRouter = require('./routes/teste');
 
@@ -34,6 +35,7 @@ app.use('/aluno', alunoRouter);
 app.use('/prof',  profRouter);
 app.use('/perg',  pergRouter);
 app.use('/quest', questRouter);
+app.use('/resp',  respRouter);
 app.use('/users', usersRouter);
 app.use('/teste', testeRouter);
 

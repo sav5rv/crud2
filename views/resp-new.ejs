@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+  <title>Questionário</title>
+</head>
+
+<body >
+  <nav class="navbar navbar-expand-md navbar-light">
+    <div class="container"> <a class="navbar-brand text-primary" href="/">
+        <i class="fa d-inline fa-lg fa-stop-circle"></i>
+        <b>Home</b>
+      </a> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar4">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar4">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"> <a class="nav-link" href="/aluno">Aluno</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="/prof"> Profissional</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="/perg"> Pergunta</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="/quest">Questionário</a> </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="py-5 text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="mb-3">Monte o seu questionário</h1>
+          <p>Selecione as perguntas desejadas</p>
+          <form action=/quest/new method="POST">
+
+            <div class="form-group">
+              <label for="prof">Profissional</label>
+              <select class="form-control" name="fk_profissional id="fk_profissional>
+                <option value="">Escolha o nome</option>
+                  <% for(var count = 0; count < carregarSelectProf.length; count++) { %>
+                    <option value="<%= carregarSelectProf[count].id %>"><%= carregarSelectProf[count].nome %></option>
+                  <% } %>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="prof">Aluno</label>
+              <select class="form-control" name="aluno" id="aluno">
+                <option value="">Escolha o nome</option>
+                  <% for(var count = 0; count < carregarSelectAluno.length; count++) { %>
+                    <option value="<%= carregarSelectAluno[count].id %>"><%= carregarSelectAluno[count].nome %></option>
+                  <% } %>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="prof">Nome do Questionário</label>
+              <input type="text" class="form-control" name="nome_questionario" id="nome_questionario" value="<%= result.nome_questionario %>" placeholder="Escolha o nome do questionário">
+            </div>
+            <div class="form-group">
+              <label for="perg1">Pergunta 1</label>
+              <select class="form-control" name="idx_pergunta" id="idx_pergunta">
+                <option value="">Escolha a pergunta</option>
+                  <% for(var count = 0; count < results.length; count++) { %>
+                    <option value="<%= results[count].id %>"><%= results[count].pergunta %></option>
+                  <% } %>
+              </select>
+              <div class="form-group">
+                <label for="prof">Resposta 1</label>
+                <input type="text" class="form-control" name="resposta" id="resposta" value="<%= results.resp1 %>" placeholder="Escolha o nome do questionário">
+              </div>
+              <a href="/resp/edit/<%= results.id%>">Editar</a>
+                                     
+              <p>
+                <input type="submit" value="Salvar" />              
+              </p>
+            
+              
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 mt-3 text-center">
+          <p>© Copyright 2018 Pingendo - All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    if (location.href.indexOf('delete=true') != -1) {
+      alert('Questionário excluído com sucesso!');
+    } else if (location.href.indexOf('edit=true') != -1) {
+      alert('Qustionário editado com sucesso!');
+    } else if (location.href.indexOf('new=true') != -1) {
+      alert('Questionário cadastrado com sucesso!');
+    } else if (location.href.indexOf('erro') != -1) {
+      alert('Ocorreu um erro!');
+    }
+  </script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>

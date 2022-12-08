@@ -37,128 +37,46 @@
 
             <div class="form-group">
               <label for="prof">Profissional</label>
-              <select class="form-control" id="perg1">
-                <option value="0">Escolha o profissional</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+              <select class="form-control" name="fk_profissional id="fk_profissional>
+                <option value="">Escolha o nome</option>
+                  <% for(var count = 0; count < carregarSelectProf.length; count++) { %>
+                    <option value="<%= carregarSelectProf[count].id %>"><%= carregarSelectProf[count].nome %></option>
+                  <% } %>
               </select>
             </div>
             <div class="form-group">
-              <label for="perg1">Pergunta 1</label>
-              <select class="form-control" id="perg1">
-                <option value="0">Escolha uma pergunta</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+              <label for="prof">Aluno</label>
+              <select class="form-control" name="aluno" id="aluno">
+                <option value="">Escolha o nome</option>
+                  <% for(var count = 0; count < carregarSelectAluno.length; count++) { %>
+                    <option value="<%= carregarSelectAluno[count].id %>"><%= carregarSelectAluno[count].nome %></option>
+                  <% } %>
               </select>
-              
-              <label for="resp1">Resposta 1</label>
-              <input type="text" class="form-control" name="resp1" id="resp1" placeholder="Digite seu resposta">   
-
-              <label for="perg2">Pergunta 2</label>
-              <select class="form-control" id="perg2">
-                <option value="0">Escolha uma pergunta</option>                
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-
-              <label for="resp2">Resposta 2</label>
-              <input type="text" class="form-control" name="resp2" id="resp2" placeholder="Digite seu resposta">              
-
-              <label for="perg3">Pergunta 3</label>
-              <select class="form-control" id="perg3">
-                <option value="0">Escolha uma pergunta</option>                
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-
-              <label for="resp3">Resposta 3</label>
-              <input type="text" class="form-control" name="resp3" id="resp3" placeholder="Digite seu resposta">              
-
-              <label for="perg4">Pergunta 4</label>
-              <select class="form-control" id="perg4">
-                <option value="0">Escolha uma pergunta</option>                
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-
-              <label for="resp1">Resposta 4</label>
-              <input type="text" class="form-control" name="resp4" id="resp4" placeholder="Digite seu resposta">              
-
-              <label for="perg5">Pergunta 5</label>
-              <select class="form-control" id="perg5">
-                <option value="0">Escolha uma pergunta</option>                
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-
-              <label for="resp1">Resposta 5</label>
-              <input type="text" class="form-control" name="resp5" id="resp5" placeholder="Digite seu resposta">              
-
-              <label for="perg6">Pergunta 6</label>
-              <select class="form-control" id="perg6">
-                <option value="0">Escolha uma pergunta</option>                
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-
-              <label for="resp1">Resposta 6</label>
-              <input type="text" class="form-control" name="resp6" id="resp6" placeholder="Digite seu resposta">              
-
-              <label for="perg7">Pergunta 7</label>
-              <select class="form-control" id="perg7">
-                <option value="0">Escolha uma pergunta</option>                
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-
-              <label for="resp7">Resposta 7</label>
-              <input type="text" class="form-control" name="resp7" id="resp7" placeholder="Digite seu resposta">              
-
-              <label for="perg8">Pergunta 8</label>
-              <select class="form-control" id="perg8">
-                <option value="0">Escolha uma pergunta</option>                
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-
-              <label for="resp8">Resposta 8</label>
-              <input type="text" class="form-control" name="resp8" id="resp8" placeholder="Digite seu resposta">              
-
-              <label for="perg9">Pergunta 9</label>
-              <select class="form-control" id="perg9">
-                <option value="0">Escolha uma pergunta</option>                
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-
-              <label for="resp9">Resposta 9</label>
-              <input type="text" class="form-control" name="resp9" id="resp9" placeholder="Digite seu resposta">              
-
-              <label for="perg10">Pergunta 10</label>
-              <select class="form-control" id="perg10">
-                <option value="0">Escolha uma pergunta</option>                
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-
-              <label for="resp10">Resposta 10</label>
-              <input type="text" class="form-control" name="resp10" id="resp10" placeholder="Digite seu resposta"> 
             </div>
-
-            <p>
-              <input type="submit" value="Salvar" />
-            </p>
+            <div class="form-group">
+              <label for="prof">Nome do Questionário</label>
+              <input type="text" class="form-control" name="nome_questionario" id="nome_questionario" value="<%= results.nome_questionario %>" placeholder="Escolha o nome do questionário">
+            </div>
+            <div class="form-group">
+              <label for="perg1">Pergunta 1</label>
+              <select class="form-control" name="idx_pergunta" id="idx_pergunta">
+                <option value="">Escolha a pergunta</option>
+                  <% for(var count = 0; count < results.length; count++) { %>
+                    <option value="<%= results[count].id %>"><%= results[count].pergunta %></option>
+                  <% } %>
+              </select>
+              <div class="form-group">
+                <label for="prof">Resposta 1</label>
+                <input type="text" class="form-control" name="resposta" id="resposta" value="<%= results.resp1 %>" placeholder="Escolha o nome do questionário">
+              </div>
+              <a href="/resp/edit/<%= results.id%>">Editar</a>
+                                     
+              <p>
+                <input type="submit" value="Salvar" />              
+              </p>
+            
+              
+            
           </form>
         </div>
       </div>
